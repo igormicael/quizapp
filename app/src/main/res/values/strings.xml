@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">quizApp</string>
+    <string name="retrieve_password"> Esqueci minha senha</string>
+    <string name="new_user"> Novo usuário</string>
+    <string name="logar"> Logar</string>
+    <string name="criar"> Criar</string>
+    <string name="enviar"> Enviar</string>
+
+    <string name="title_activity_login">Login</string>
+
+</resources>
