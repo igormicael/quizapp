@@ -11,6 +11,11 @@ class LoginActivity : AppCompatActivity(), FragmentAction {
 
     override fun onClick(username: String, password: String) {
         Toast.makeText(this, "Usuário logado com sucesso!", Toast.LENGTH_SHORT ).show()
+
+        val intent = Intent(this,
+            GameActivity::class.java)
+        startActivity(intent)
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

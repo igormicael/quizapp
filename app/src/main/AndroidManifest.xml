@@ -21,11 +21,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".RetrievePasswordActivity"
             android:parentActivityName=".LoginActivity" />
-        <activity android:name=".NewUserActivity"
+
+        <activity
+            android:name=".NewUserActivity"
             android:parentActivityName=".LoginActivity" />
+
+        <activity android:name=".GameActivity"
+            android:parentActivityName=".LoginActivity" />
+
     </application>
 
 </manifest>
