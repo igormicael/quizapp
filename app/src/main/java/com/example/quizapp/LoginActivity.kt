@@ -5,17 +5,35 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizapp.FormFragment.Companion.BUTTON_NAME
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), FragmentAction {
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onClick(username: String, password: String) {
         Toast.makeText(this, "Usuário logado com sucesso!", Toast.LENGTH_SHORT ).show()
 
-        val intent = Intent(this,
-            GameActivity::class.java)
-        startActivity(intent)
+        signIn(username, password)
 
+    }
+
+    private fun signIn(username: String, password: String) {
+        auth.signInWithEmailAndPassword(username, password)
+            .addOnCompleteListener(this) { task ->
+                if(task.isSuccessful){
+                    val intent = Intent(this, GameActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(this, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun signOut() {
+        auth.signOut()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +63,11 @@ class LoginActivity : AppCompatActivity(), FragmentAction {
             startActivity(intent)
         }
 
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
+
     }
+
+
 
 }

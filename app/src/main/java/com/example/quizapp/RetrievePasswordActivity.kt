@@ -1,12 +1,26 @@
 package com.example.quizapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+
 
 class RetrievePasswordActivity : AppCompatActivity(), FragmentAction {
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onClick(username: String, password: String) {
-        finish()
+
+        auth.sendPasswordResetEmail(username)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "E-mail enviado!", Toast.LENGTH_SHORT ).show()
+                    finish()
+                }else{
+                    Toast.makeText(this, "Não foi possivel redefinir senha!", Toast.LENGTH_SHORT ).show()
+                }
+            }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,5 +38,7 @@ class RetrievePasswordActivity : AppCompatActivity(), FragmentAction {
             beginTransaction()
             .add(R.id.fragment1, fragment)
             .commit()
+
+        auth = FirebaseAuth.getInstance()
     }
 }

@@ -16,7 +16,7 @@ class QuestionFragment : Fragment() {
         super.onAttach(context)
         try {
             fragmentAction = context as FragmentAction
-        } catch (e: Exception){
+        } catch (e: Exception) {
 
         }
     }
