@@ -3,9 +3,13 @@ package com.example.quizapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.quizapp.action.QuestionAction
+import com.example.quizapp.model.Alternativa
 import kotlinx.android.synthetic.main.activity_game.*
 
 class GameActivity : AppCompatActivity() {
+
+    var correctAnswers = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,4 +26,5 @@ class GameActivity : AppCompatActivity() {
             .add(R.id.questions, fragment)
             .commit()
     }
+
 }
