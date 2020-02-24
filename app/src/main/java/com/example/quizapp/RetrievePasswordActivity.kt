@@ -13,13 +13,25 @@ class RetrievePasswordActivity : AppCompatActivity(), FragmentAction {
 
     override fun onClick(username: String, password: String) {
 
+        if (username.isBlank()) {
+            Toast.makeText(
+                this, "Please inform email",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
         auth.sendPasswordResetEmail(username)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "E-mail enviado!", Toast.LENGTH_SHORT ).show()
+                    Toast.makeText(this, "E-mail sent!", Toast.LENGTH_SHORT).show()
                     finish()
-                }else{
-                    Toast.makeText(this, "Não foi possivel redefinir senha!", Toast.LENGTH_SHORT ).show()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Error: It was impossible to send email!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
@@ -30,13 +42,12 @@ class RetrievePasswordActivity : AppCompatActivity(), FragmentAction {
 
 
         val bundle = Bundle()
-        bundle.putBoolean (FormFragment.SHOW_PASSWORD, false)
+        bundle.putBoolean(FormFragment.SHOW_PASSWORD, false)
 
-        bundle.putString(FormFragment.BUTTON_NAME, "Recuperar senha")
+        bundle.putString(FormFragment.BUTTON_NAME, "Retrieve password")
         val fragment = FormFragment.newInstance(bundle)
 
-        supportFragmentManager.
-            beginTransaction()
+        supportFragmentManager.beginTransaction()
             .add(R.id.fragment1, fragment)
             .commit()
 

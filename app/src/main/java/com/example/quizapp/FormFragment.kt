@@ -18,7 +18,7 @@ class FormFragment : Fragment() {
         super.onAttach(context)
         try {
             fragmentAction = context as FragmentAction
-        } catch (e: Exception){
+        } catch (e: Exception) {
 
         }
     }
@@ -32,19 +32,19 @@ class FormFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_form, container, false)
         val button = view.findViewById<Button>(R.id.frag_button)
 
-        arguments?.let{
+        arguments?.let {
             val password = view.findViewById<EditText>(R.id.password)
 
-            if(it.get(SHOW_PASSWORD) == null || it.get(SHOW_PASSWORD) == true){
+            if (it.get(SHOW_PASSWORD) == null || it.get(SHOW_PASSWORD) == true) {
                 password.visibility = View.VISIBLE
-            }else{
+            } else {
                 password.visibility = View.GONE
             }
 
             button.text = it.get(BUTTON_NAME).toString()
         }
 
-        button.setOnClickListener{
+        button.setOnClickListener {
 
             val username = view.findViewById<EditText>(R.id.username).text.toString()
             val password = view.findViewById<EditText>(R.id.password).text.toString()

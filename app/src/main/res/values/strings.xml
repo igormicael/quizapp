@@ -1,15 +1,14 @@
 <resources>
     <string name="app_name">quizApp</string>
-    <string name="retrieve_password"> Esqueci minha senha</string>
-    <string name="new_user"> Novo usuário</string>
-    <string name="logar"> Logar</string>
-    <string name="criar"> Criar</string>
-    <string name="enviar"> Enviar</string>
+    <string name="retrieve_password"> Forgot my passord</string>
+    <string name="new_user"> New user</string>
+    <string name="logar"> Login</string>
+    <string name="criar"> Create</string>
+    <string name="enviar"> Send</string>
 
     <string name="title_activity_login">Login</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="responder">Responder</string>
+    <string name="responder">Answer</string>
+    <string name="novo_jogo">New Game</string>
 
 </resources>

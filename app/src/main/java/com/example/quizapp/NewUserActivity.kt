@@ -1,9 +1,9 @@
 package com.example.quizapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.quizapp.action.FragmentAction
 import com.google.firebase.auth.FirebaseAuth
 
@@ -13,14 +13,30 @@ class NewUserActivity : AppCompatActivity(), FragmentAction {
 
     override fun onClick(username: String, password: String) {
 
+        if (username.isBlank()) {
+            Toast.makeText(
+                this, "Please inform email",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        if (password.isBlank()) {
+            Toast.makeText(
+                this, "Please inform password",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+
         auth.createUserWithEmailAndPassword(username, password)
             .addOnCompleteListener(this) { task ->
-                if( task.isSuccessful){
-                    Toast.makeText(this, "Usuário criado com sucesso!", Toast.LENGTH_SHORT ).show()
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "User created!", Toast.LENGTH_SHORT).show()
                     finish()
-                }else{
+                } else {
                     Log.w("NewUserActivity", "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(this, "Não foi possível criar usuário. Contactar suporte", Toast.LENGTH_SHORT ).show()
+                    Toast.makeText(this, "Error: User wasn't created!", Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -31,11 +47,10 @@ class NewUserActivity : AppCompatActivity(), FragmentAction {
 
         val bundle = Bundle()
 
-        bundle.putString(FormFragment.BUTTON_NAME, "Criar")
+        bundle.putString(FormFragment.BUTTON_NAME, "Create")
         val fragment = FormFragment.newInstance(bundle)
 
-        supportFragmentManager.
-            beginTransaction()
+        supportFragmentManager.beginTransaction()
             .add(R.id.fragment1, fragment)
             .commit()
 

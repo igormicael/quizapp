@@ -14,27 +14,38 @@ class LoginActivity : AppCompatActivity(), FragmentAction {
     private lateinit var auth: FirebaseAuth
 
     override fun onClick(username: String, password: String) {
-        Toast.makeText(this, "Usuário logado com sucesso!", Toast.LENGTH_SHORT ).show()
-
         signIn(username, password)
-
     }
 
     private fun signIn(username: String, password: String) {
-        //auth.signInWithEmailAndPassword(username, password)
-        //    .addOnCompleteListener(this) { task ->
-        //        if(task.isSuccessful){
+       /* if (username.isBlank()) {
+            Toast.makeText(
+                this, "Please inform email",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        if (password.isBlank()) {
+            Toast.makeText(
+                this, "Please inform password",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }*/
+
+        /*auth.signInWithEmailAndPassword(username, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {*/
                     val intent = Intent(this, GameActivity::class.java)
                     startActivity(intent)
-       //         }else{
-        //            Toast.makeText(this, "Authentication failed.",
-         //               Toast.LENGTH_SHORT).show()
-         //       }
-         //   }
-    }
-
-    private fun signOut() {
-        auth.signOut()
+                    Toast.makeText(this, "User logged in!", Toast.LENGTH_SHORT).show()
+          /*      } else {
+                    Toast.makeText(
+                        this, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }*/
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,31 +55,32 @@ class LoginActivity : AppCompatActivity(), FragmentAction {
         setSupportActionBar(toolbar)
 
         val bundle = Bundle()
-        bundle.putString(BUTTON_NAME, "Logar")
+        bundle.putString(BUTTON_NAME, "Log in")
         val fragment = FormFragment.newInstance(bundle)
 
-        supportFragmentManager.
-            beginTransaction()
+        supportFragmentManager.beginTransaction()
             .add(R.id.fragment1, fragment)
             .commit()
 
         retrievePassword.setOnClickListener {
-            val intent = Intent(this,
-                RetrievePasswordActivity::class.java)
+            val intent = Intent(
+                this,
+                RetrievePasswordActivity::class.java
+            )
             startActivity(intent)
         }
 
-        newUser.setOnClickListener{
-            val intent = Intent(this,
-                NewUserActivity::class.java)
+        newUser.setOnClickListener {
+            val intent = Intent(
+                this,
+                NewUserActivity::class.java
+            )
             startActivity(intent)
         }
 
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
     }
-
 
 
 }
